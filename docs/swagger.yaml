@@ -1,0 +1,85 @@
+basePath: /
+definitions:
+  models.Todo:
+    properties:
+      description:
+        type: string
+      id:
+        type: integer
+      to_list:
+        type: string
+    type: object
+  params.TodoCreate:
+    properties:
+      description:
+        type: string
+      to_list:
+        type: string
+    type: object
+  response.Response:
+    properties:
+      data: {}
+      message:
+        type: string
+      status_code:
+        type: integer
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: hacktiv@swagger.io
+    name: API Support
+  description: This is a API webservice to manage to-do list
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Todo-API
+  version: "1.0"
+paths:
+  /todos:
+    get:
+      consumes:
+      - application/json
+      description: Get all todos list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              items:
+                $ref: '#/definitions/models.Todo'
+              type: array
+            type: array
+      summary: Get all todos list
+      tags:
+      - todos
+    post:
+      consumes:
+      - application/json
+      description: Create a new todo with the input payload
+      parameters:
+      - description: Create todo
+        in: body
+        name: todo
+        required: true
+        schema:
+          $ref: '#/definitions/params.TodoCreate'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Todo'
+              type: object
+      summary: Create a todo
+      tags:
+      - todos
+swagger: "2.0"
