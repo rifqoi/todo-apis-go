@@ -82,4 +82,51 @@ paths:
       summary: Create a todo
       tags:
       - todos
+  /todos/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get todo task by id
+      parameters:
+      - description: get todo task by id
+        format: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Todo'
+            type: array
+      summary: Get todo list by id
+      tags:
+      - todos
+  /todos/update/{id}:
+    put:
+      consumes:
+      - application/json
+      description: Update todo list by id
+      parameters:
+      - description: update todo task by id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/response.Response'
+            type: array
+      summary: Update a todo list by id
+      tags:
+      - todos
 swagger: "2.0"
