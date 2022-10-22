@@ -2,7 +2,7 @@ package main
 
 import (
 	_ "github.com/rifqoi/todos-api-go/docs"
-	"github.com/rifqoi/todos-api-go/router"
+	routes "github.com/rifqoi/todos-api-go/router"
 
 	"github.com/gin-gonic/gin"
 )
