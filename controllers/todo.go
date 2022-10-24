@@ -109,3 +109,28 @@ func UpdateTodo(c *gin.Context) {
 	}
 	c.IndentedJSON(http.StatusOK, responses.NewSuccessResponse("Data "+todo.ToList+" updated successfully"))
 }
+
+// DeleteTodo godoc
+// @Summary Delete a todo list by id
+// @Description Delete todo list by id
+// @Tags todos
+// @Accept json
+// @Produce json
+// @Param id path int true "delete todo task by id"
+// @Success 200 {array} response.Response
+// @Router /todos/delete/{id} [delete]
+func DeleteTodo(c *gin.Context) {
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+
+	todo, err := services.DeleteTodoById(id)
+	if err != nil {
+		c.IndentedJSON(http.StatusNotFound, gin.H{
+			"msg": "Data Not Found",
+		})
+		return
+	}
+	c.IndentedJSON(http.StatusOK, responses.NewSuccessResponse("data "+todo.ToList+" deleted successfully"))
+}

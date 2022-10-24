@@ -1,6 +1,9 @@
 package main
 
 import (
+	"fmt"
+	"os"
+
 	_ "github.com/rifqoi/todos-api-go/docs"
 	routes "github.com/rifqoi/todos-api-go/router"
 
@@ -21,6 +24,10 @@ func main() {
 
 	router := gin.Default()
 	routes.TodoRouters(router)
-	router.Run(":8080")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	router.Run(fmt.Sprintf(":%s", port))
 
 }

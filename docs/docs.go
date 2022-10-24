@@ -97,6 +97,41 @@ const docTemplate = `{
                 }
             }
         },
+        "/todos/delete/{id}": {
+            "delete": {
+                "description": "Delete todo list by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "todos"
+                ],
+                "summary": "Delete a todo list by id",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "delete todo task by id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/response.Response"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/todos/update/{id}": {
             "put": {
                 "description": "Update todo list by id",

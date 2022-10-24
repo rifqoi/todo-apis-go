@@ -106,6 +106,29 @@ paths:
       summary: Get todo list by id
       tags:
       - todos
+  /todos/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete todo list by id
+      parameters:
+      - description: delete todo task by id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/response.Response'
+            type: array
+      summary: Delete a todo list by id
+      tags:
+      - todos
   /todos/update/{id}:
     put:
       consumes:
